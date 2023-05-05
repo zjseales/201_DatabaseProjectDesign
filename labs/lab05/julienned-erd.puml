@@ -1,0 +1,93 @@
+@startuml entities_julienned_music_school
+
+skinparam Style StrictUML
+skinparam LineType ortho
+skinparam monochrome true
+
+'Staff Member entity
+class Staff {
+    * staffID CHAR(5)
+--
+    * lName
+    * fName
+    * postalAddress
+    * email
+    * officePhone
+    homePhone
+    mobilePhone
+}
+
+'Student entity
+class Student {
+    * studentID NUMERIC(7)
+--
+    * lName
+    * fName
+    * instrument
+    * postalAddress
+    * email
+    homePhone
+    mobilePhone
+    yearOfEnrol DATE
+    feesPaid
+}
+
+'Audition Entity
+class Audition {
+    * studentID NUMERIC(7)
+--
+    * staff1ID <<FK>>
+    staff2ID <<FK>>
+    staff3ID <<FK>>
+    * auditionRoom
+    * date
+    * time
+    * pass/Fail
+    additionalNotes
+}
+
+'Instrument Entity
+class Instrument {
+    * instrumentID CHAR(6)
+--
+    Notes
+}
+
+'Class Entity
+class Class {
+    * staffID CHAR(5)
+--
+    * roomNumber
+    * theory/tuition
+    * time
+    instrument
+}
+
+'Results Entity
+class Result {
+    * studentID NUMERIC(7)
+    * testID
+--
+    * staffID
+    * mark
+    additionalNotes
+}
+
+'Invoice Entity
+class Invoice {
+    * studentID NUMERIC(7)
+    * yearOfEnrol DATE
+--
+    * amountToPay DECIMAL
+    * currentDate DATE
+}
+
+Student ||-|{ Audition : sit
+Student ||.left.o| Instrument : hire
+Student ||-down-o{ Result
+Staff }o-|| Result : grade
+Staff ||-down-o{ Class
+Student ||-|| Invoice : pay
+Audition }o-|{ Staff : judge
+
+@enduml

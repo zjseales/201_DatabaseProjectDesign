@@ -1,0 +1,57 @@
+@startuml DegreeEnrolSeq
+
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+' === Actors / Participants
+
+actor "User" as user
+participant "MainMenu" as menu <<form>>
+participant "degrForm : DegreeEnrolmentForm" as enrolDegr <<form>>
+participant "dataStorage : DataStorage" as dataStorage <<data store>>
+participant "degree : Degree" as degree <<domain>>
+
+' === Messages ===
+
+user -> menu : click "Enrol Student In Degree"
+menu++
+menu -> enrolDegr : displayForm()
+enrolDegr++
+enrolDegr -> dataStorage : getDegreeNames()
+enrolDegr -> dataStorage : getDegreeEnrolmentStatuses()
+
+' take ID input and find student
+user -> enrolDegr : enter studentID
+user -> enrolDegr : click "Find Student"
+enrolDegr -> dataStorage : findStudent(studentID)
+dataStorage++
+return student
+
+' take degree choice input and construct a degree object
+user -> enrolDegr : choose "Degree Name"
+create degree
+enrolDegr -> degree : «construct from user choice»
+'enrol student in the degree they chose
+enrolDegr -> dataStorage : enrolStudentInDegree(student, degree)
+dataStorage++
+return enrolment
+enrolDegr --> enrolDegr : updateEnrolmentStatus(enrolment)
+' save the enrolment details
+user -> enrolDegr : click "Save"
+enrolDegr -> dataStorage : saveEnrolment(enrolment)
+return
+'destroy form on end
+destroy enrolDegr
+@enduml

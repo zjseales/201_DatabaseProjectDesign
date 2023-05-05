@@ -1,0 +1,26 @@
+@startuml
+
+title : Julienned School Class Streaming\n\n
+
+'actors
+:Teaching Staff: as teacher
+:Student: as student
+
+'usecases
+(Choose Class) as choose
+(Specialized\nclass) as chooseS
+(Add to timetable) as add
+(Check room) as checkR
+(Check\nteacher\navailable) as checkTeach
+(Assign Teacher\nTime Slot) as assign
+
+student-choose
+choose->add
+chooseS-down.>choose : <<extends>>
+
+add-down.>checkR : <<includes>>
+add.>checkTeach : <<includes>>
+add-up.>assign : <<includes>>
+assign-teacher
+
+@enduml

@@ -1,0 +1,80 @@
+@startuml Enrolments
+
+' ======= Style / Layout Tweaks =======
+
+skinparam {
+  ' use conventional UML notation
+  Style StrictUML
+
+  ' use + and - characters instead of icons for showing visibility
+  ClassAttributeIconSize 0
+
+  ' less pointer corners
+  RoundCorner 5
+
+  ' make everything slightly less cramped
+  Padding 2
+
+  ' increase vertical spacing to make room for labels
+  RankSep 100
+
+  ' increase horizontal spacing to make room for labels
+  NodeSep 100
+}
+
+' ======= Classes =======
+
+class "Student" as student {
+  ' fields
+  - studentID
+  - fName
+  - lName
+  - phoneNumber
+  - schoolMail
+  - homeEmail
+  - otherInstruments
+  'methods
+}
+
+class "DegreeEnrolment" as degr {
+  ' fields
+  - studentID
+  - year
+  - degreeName
+  - enrolStatus
+  - feesPaid
+--
+  'methods
+  + addStudent(student : Student)
+  + changeClass(classEnrolment : ClassEnrolment)
+}
+
+class "ClassEnrolment" as classEnrol {
+  'fields
+  - classCode
+  - year
+  - studentID
+--
+  'methods
+  + addClass(class : Class) : 
+  + removeClass(class : Class)
+}
+
+class "Class" as cl {
+  'fields
+  - classCode
+  - year
+  - className
+  - classDescription
+--
+  'methods
+}
+
+' ======= Relationships =======
+
+' Note: the \r is a right-aligned line break (\l is left-aligned, and \n is centred)
+degr -> "- apply\r0..*" student
+degr -down-> "- change\r1" classEnrol
+classEnrol -> "- choose\r1" cl
+
+@enduml

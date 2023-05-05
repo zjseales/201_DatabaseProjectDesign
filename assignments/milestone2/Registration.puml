@@ -1,0 +1,27 @@
+@startsalt RegistrationMockUp
+
+{^ Registration Form
+  <U+0020>{
+    (mandatory fields)
+   * First Name: | "Gremlin"
+   * Last Name: | "Johannesburg"
+   * Email Address: |  "zjspeckles@yahoo.org.au"
+   * Password: | " * * * * * * * * * *"
+   * Country: |  ^ New Zealand ^
+   (optional fields)
+   Delivery Address: | "36 Candy St"
+   \t |"Terraform"
+   \t |"Dunedin"
+   Mobile: | "021 456 777"
+   D.O.B :| ^ December ^ | ^ 30 ^ | ^ 1986 ^
+   Favorite Artist/s: | "Paolo Nutini"
+   \t | "Aerosmith"
+   \t | "Ed Sheeran"
+   \t | "\t\t\t"
+   Favorite Genre/s: | ^Country, Metal, Rap.. ^
+  }<U+0020>
+
+  <U+0020>{ [ Register Account ] |  | [\tSave Registration\t] |[  Cancel  ] }
+
+}
+@endsalt

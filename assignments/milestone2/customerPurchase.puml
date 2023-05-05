@@ -1,0 +1,39 @@
+@startuml Customer_Purchase
+
+title : Customer Purchase
+
+'actors
+:Customer: as customer
+:Staff: as staff
+:Payment\nSoftware: as paySoft <<Application>>
+:Postal\nService: as post
+
+'usecases
+(Checkout\nCart\n'non-empty') as checkout
+(Log-in) as login
+(Secure\nPayment\nOnline) as pay
+(Gift-Wrap) as gift
+(Choose\nDelivery\nAddress) as d
+(Choose to\npick-up from\nstore) as pick
+(Fulfil order) as fin
+(Send order/s) as send
+(Receive\nInvoice) as inv
+
+'Diagram Layout
+customer-down-checkout
+customer-left-login
+checkout-up.>login : <<require>>
+checkout-.>pay : <<include>>
+checkout.>d : <<include>>
+d<.down-pick : <<extend>>
+checkout<-down.gift : <<extend>>\t\t
+paySoft-up-pay
+staff-up-gift
+fin.>checkout : <<require>>
+staff-fin
+fin-down.>send : <<include>>
+send-down-post
+customer-inv
+inv-.>checkout : <<require>>
+
+@enduml

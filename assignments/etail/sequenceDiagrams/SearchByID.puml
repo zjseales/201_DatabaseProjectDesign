@@ -1,0 +1,56 @@
+@startuml SearchByID
+
+title : "Search Products By ID \n(Sequence-Diagram)"
+
+' style tweaks to make the diagram a little more readable
+skinparam {
+	Style strictuml
+	RoundCorner 5
+	BoxPadding 35
+	ParticipantPadding 15
+    Padding 2
+
+	Sequence {
+		' make activations yellow too
+		LifeLineBackgroundColor #FDFDCD
+
+		' make stereotypes more presentable
+		Stereotype {
+			Font {
+				Size 11
+				Style plain
+			}
+		}
+	}
+
+	Database {
+		' make database border consistent with the rest of the diagram
+		BorderColor #A80036
+	}
+
+}
+
+actor "User" as user
+participant "MainMenu" as menu <<gui>>
+participant "ProductViewer" as viewer <<gui>>
+participant "dao : ProductCollectionsDAO" as dao <<DAO>>
+
+'user clicks 'view' button
+user -> menu++: click 'View Products'
+create viewer
+menu -> viewer : «construct»
+
+viewer -> dao++ : retrieve data store
+dao -> viewer-- : return data to gui
+user -> viewer : Enter an ID value
+user -> viewer++ : click 'Search' button
+
+viewer -> dao : search by id
+
+' save product in the data store
+dao -> viewer : return search result to gui
+viewer--
+dao--
+'destroy viewer
+
+@enduml

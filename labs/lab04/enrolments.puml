@@ -1,0 +1,29 @@
+@startuml
+
+title : Enrolment Process for Jullienne Music School\n\n
+
+'actors
+actor Student
+actor :Management\nStaff: as man
+actor :Potential\nStudent: as poten
+actor :Payment\nSoftware: as pay <<Application>>
+'usecases
+(Apply)
+(Pay Fees) as fees
+(Audition)
+(Enrolment\nComplete) as done
+(Choose\nInstrument) as instrument
+
+poten-Apply
+Apply-up->Audition : <<include>>
+man-down-Audition
+man-right-done
+done-down->fees : <<required>>
+Student-left-done
+
+Apply->instrument : <<include>>
+
+fees-right-pay
+
+
+@enduml

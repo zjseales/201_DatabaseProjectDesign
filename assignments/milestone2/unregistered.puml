@@ -1,0 +1,37 @@
+@startuml Unregistered
+
+title : Unregistered Customer Interactions
+
+'actors
+:Customer: as customer
+
+'usecases
+(Register\nAccount) as reg
+(Enter mandatory info\nname/email/country/) as enterInfo
+(Create Password) as password
+(Browse\nProducts) as browse
+(Filter Products) as filter
+(Search \nProducts) as search
+(Enter Keywords) as enter
+(Add Item/s to cart) as add
+(Modify contents\nof cart) as mod
+(Remove Items) as rem
+(Change Quantity) as cha
+
+'Registering an account
+customer-left-reg
+reg-up.>enterInfo : <<include>>
+reg-left.>password : <<include>>
+
+'Browsing Products
+customer--browse
+customer-down-search
+browse<.down-filter : <<extend>>
+search<.left-filter : <<extend>>
+search-.>enter : <<include>>\t\t
+customer-right-mod
+mod<.rem : <<extend>>
+mod<..cha : <<extend>>
+add-down.>mod : <<extend>>
+
+@enduml

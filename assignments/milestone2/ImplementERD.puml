@@ -1,0 +1,167 @@
+@startuml HVLoFiERD
+
+title ERD representing an online transaction for HV Lo-Fi
+
+' ======= Style / Layout Tweaks =======
+
+skinparam {
+  ' use conventional UML notation
+  Style StrictUML
+
+  ' use + and - characters instead of icons for showing visibility
+  ClassAttributeIconSize 0
+
+  ' less pointer corners
+  RoundCorner 5
+
+  ' make everything slightly less cramped
+  Padding 2
+
+  ' increase vertical spacing to make room for labels
+  RankSep 100
+
+  ' increase horizontal spacing to make room for labels
+  NodeSep 50
+}
+
+class SiteUser {
+    * IPAddress
+--
+}
+
+'Customer entity
+class RegisteredCustomer {
+    * CustomerID
+--
+    * LName
+    * FName
+    * Email
+    * Password
+    * CountryOfResidence
+    HomeAddress
+    PhoneNumber
+    BirthDate
+    MusicPreferences
+}
+
+'Staff entity
+class StaffMember {
+    * StaffID
+--
+    * StoreID <<FK>>
+    * LastName
+    * FirstName
+    * Position
+    * Email
+    * TaxCode
+    HomePhone
+    MobilePhone
+    MusicPreferences
+}
+
+'Store Entity
+class Store {
+    * StoreID
+--
+    * StoreName
+    * StoreAddress
+    * ContactNumber
+}
+
+'Shopping Cart
+class ShoppingCart {
+    * IPAddress <<FK>>
+--
+    * CartContents
+    * Quantities
+    * PriceList
+    * GST
+    * TotalPrice
+}
+
+'Product Entity
+class Product {
+    * ProductID
+--
+    * SupplierID <<FK>>
+    * ProductName
+    * Cost
+    * RRP
+    Genre
+    Artist
+    Producer/Masterer
+    ReleaseDate
+}
+
+'Supplier Entity
+class Supplier {
+    * SupplierID
+--
+    * SupplierName
+    * SupplierAddress
+    * ContactDetails
+    * Stock
+}
+
+'Total Stock Database
+class StockDatabase {
+    * Date/Time
+--
+    * Contents (ProductID's)
+}
+
+'Sale/Checkout Entity
+class Transaction {
+    * TransactionID
+--
+    * CustomerID <<FK>>
+    * IPAddress <<FK>>
+    * DeliveryAddress
+    * ShippingCost
+    * PaymentMethod
+    * PaymentAccepted
+    ChangeGSTValue
+    Giftwrap
+}
+
+'PaymentSoftware
+class PaymentSoftware {
+    * TransactionID <<FK>>
+--
+}
+
+'Invoice Entity
+class Invoice {
+    * TransactionID <<FK>>
+--
+    * AmountPaid
+    AmountWithstanding
+}
+
+'Entity representing the delivery service
+class PostalService {
+    * TrackingID
+--
+    * TransactionID <<FK>>
+}
+
+'ERD Layout
+SiteUser|o-down-||ShoppingCart : modifies
+SiteUser||-down-o|RegisteredCustomer : Registration
+Store ||-up-|{ StaffMember : employ
+StaffMember ||.up.o| StockDatabase : update
+StaffMember ||.right.|{ Supplier : contact
+Supplier ||.down.|{ Store : deliver
+Supplier||-up-o{Product : supply
+StockDatabase ||-right-|{ Product : consists of
+RegisteredCustomer ||.|| ShoppingCart : \tmodifies
+ShoppingCart|o.right.o{StockDatabase : \tcontents from
+ShoppingCart||-down-o|Transaction
+RegisteredCustomer||-down-o|Transaction : \tcheckout
+PaymentSoftware||-up-o{Transaction : pay
+Invoice||-o|Transaction : create\t
+Invoice|o.up.||RegisteredCustomer : send
+Transaction}o.right.||StaffMember : manage\t\t
+Transaction}o-down-||PostalService : deliver
+
+@enduml

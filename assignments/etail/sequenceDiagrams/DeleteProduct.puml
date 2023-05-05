@@ -1,0 +1,57 @@
+@startuml DeleteProduct
+
+title : "Delete A Product \n(Sequence-Diagram)"
+
+' style tweaks to make the diagram a little more readable
+skinparam {
+	Style strictuml
+	RoundCorner 5
+	BoxPadding 35
+	ParticipantPadding 15
+    Padding 2
+
+	Sequence {
+		' make activations yellow too
+		LifeLineBackgroundColor #FDFDCD
+
+		' make stereotypes more presentable
+		Stereotype {
+			Font {
+				Size 11
+				Style plain
+			}
+		}
+	}
+
+	Database {
+		' make database border consistent with the rest of the diagram
+		BorderColor #A80036
+	}
+
+}
+
+actor "User" as user
+participant "MainMenu" as menu <<gui>>
+participant "ProductViewer" as viewer <<gui>>
+participant "dao : ProductCollectionsDAO" as dao <<DAO>>
+
+'set up the viewer
+user -> menu++: click 'View Products'
+create viewer
+menu -> viewer : «construct»
+viewer -> dao++ : retrieve data store
+dao -> viewer-- : return data to gui
+'initialize delete operation
+user -> viewer : select a Product
+user -> viewer++ : click 'Delete' button
+'confirmation
+viewer -> viewer : display confirmation\nprompt
+user -> viewer : select "Yes"
+' delete product from the data store
+viewer -> dao++ : remove selected product
+dao -> viewer : return updated data store
+dao--
+viewer--
+'destroy viewer
+
+@enduml

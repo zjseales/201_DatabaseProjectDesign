@@ -1,0 +1,30 @@
+@startuml streaming
+
+skinparam guillemet false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam style strictuml
+
+skinparam activity {
+  hide empty description
+}
+
+start
+repeat
+repeat
+repeat :Student Chooses Class;
+repeat while (Class Available?) is ([no])
+->[yes];
+repeat while (Teacher Available?) is ([no])
+->[yes];
+repeat while(Room Available?) is ([no])
+->[yes];
+repeat :Assign Class Time Stream;
+repeat while (Time Table Clash) is ([clash]\n)
+->[no clash];
+repeat
+repeat while (All Classes\nFinalized) is (\t[no]\n)
+->[yes];
+:Finalize Timetable;
+stop
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+
+title : Instrument Hire Use Case Diagram\n\n
+
+'actors
+:Hire Staff: as hirers
+:Student: as customer
+'use cases
+(Apply for\nhire) as apply
+(Fulfil\nOrder) as complete
+(Check\nAvailability) as check
+(Payment) as pay
+
+customer->apply
+apply->hirers
+hirers-down->complete
+complete->customer
+complete-down.>check : <<includes>>
+pay<.complete : <<required>>
+customer-down-pay
+
+@enduml

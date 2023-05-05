@@ -1,0 +1,12 @@
+@startsalt MainPageMockUp
+
+{^ Main Page
+  <U+0020> {
+     [   Register New Account   ]
+     [ Login To Existing Account]
+     [     Browse Store         ]
+     [   View Shopping Cart     ]
+  }<U+0020>
+}
+
+@endsalt

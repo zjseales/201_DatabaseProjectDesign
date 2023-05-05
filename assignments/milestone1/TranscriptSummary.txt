@@ -1,0 +1,63 @@
+-Buy and sell records and tapes is majority of business (High priority).
+-Accessories increasing in popularity;
+    headphones, cleaning kits, tape players, record players, blank tapes
+-Transfer items between shops on request, extra fee depends on item value.
+-Stores in Australia and NZ.
+    Suburban Auckland most popular, should research why.
+-2 different site domains but majority of functions are equal.
+-Option to register an account with personal login info.
+    Possible 3rd party registration (eg, facebook, google, apple, etc)
+-Keyword search, sorted by Artist, Title, Genre, year, maybe price.
+    Possibly partner with Shazam (or similar) to develop an audio search function
+-Should have awesome GUI, Browse a stack of records just like a store.
+    Maybe pick a genre, or a price range, etc, and get assigned all relevant 
+    options that you may browse, sorted alphabetically by title, artist or sorted by cost
+-Weekly recommendations from staff, or even just noticeable advertisements on the main page
+-Choose items, add to cart, and checkout once complete,
+    Checkout can involve gift wrapping, custom messages, or delivery, for added fee.
+-Invoice form required for user.
+-Credit and PayPal necessary, consider Apple and Google Pay.
+    Research Debit 'flakiness'?
+-Keep in mind possible future smartphone app implementation.
+
+FORMS;
+ENCRYPT PASSWORD!!!!!!! Even with paper based, password should never need to be recorded.
+
+Possibly offer birthday rewards or music dependent on Birth Year,
+Would be nice to offer recommendations based on their music taste/preferences
+otherwise why even collect this info?
+Invoice looks okay, though layout is terrible.
+ENSURE SAFETY AND PRIVACY OF PERSONAL INFO.
+
+STAKEHOLDERS;
+
+Customers - Operational, and external.
+    May be buyers, or sellers.. not sure if we want to offer the sell service online as we might end up buying faulty products, or worse giving faulty products to customers.
+    Customers are people outside the business who use the system regularly to purchase products, offer to sell products (maybe), and browse the store.
+    Will have access to the store, checkout, and their own account. Only after registration.
+
+Staff - Operational and Internal.
+    The employees who will update this stock database as well as main page advertisements.
+    Will also take information from the site in order to complete orders.
+    Manage imports, stock, sales, possibly manage customer feedback/requests.
+
+Third party registration softwares - Operational, External.
+    Must implement an OAuth server to link accounts with Google or Apple,
+    Might have to scrap this and just create a custom registration form for now.
+
+Third party payment software - External, operational.
+    PayPal - Expensive but easy to set up, PayPal manages most of the work.
+    Credit - Will need to set up a payment gateway, providers will charge fees.
+    Direct Transfers - Can either redirect to bank page, or use a service such as POLi for secure transactions. 
+
+Should bring this article up at next meeting and offer suggestions...
+"Then of course there is the issue of accessibility" ... " nearly 50% of Generation Z Kiwis have never owned a credit card. 
+This is in addition to 19% of Millennials, and 7.5% of both Gen X-ers and Baby Boomers. To avoid missing out on a lot of 
+potential custom, you must ensure you offer a range of payment methods that cover both credit and debit options."
+REFERENCE : https://www.polipay.co.nz/blog/top-12-methods-for-accepting-online-payments-in-new-zealand/
+
+Windcave sounds ideal, it offers a large variety of payment methods all in one service.
+Would be much simpler to manage the one external payment stakeholder, 
+rather than 1 for each seperate payment method, and having to manage each method's fees.
+
+POLi sounds good too though this article is from the POLi site, so may be biased.

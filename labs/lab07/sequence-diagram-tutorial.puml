@@ -1,0 +1,61 @@
+@startuml Practice
+
+' style tweaks to make the diagram a little more readable
+skinparam {
+	Style strictuml
+	RoundCorner 5
+	BoxPadding 35
+	ParticipantPadding 15
+    Padding 2
+
+	Sequence {
+		' make activations yellow too
+		LifeLineBackgroundColor #FDFDCD
+
+		' make stereotypes more presentable
+		Stereotype {
+			Font {
+				Size 11
+				Style plain
+			}
+		}
+	}
+
+	Database {
+		' make database border consistent with the rest of the diagram
+		BorderColor #A80036
+	}
+
+}
+
+actor "User" as user
+participant "MainMenu" as menu <<form>>
+participant "BookEditor" as editor <<form>>
+participant "book : Book" as book <<domain>>
+participant "BookListDAO" as dao <<DAO>>
+
+'user clicks add new book button
+user -> menu++: click 'Add New Book'
+create editor
+menu -> editor : «construct»
+
+' user enters book details and clicks the save book button
+user -> editor : enters book details
+user -> editor++ : clicks save button
+
+' construct book
+create book
+editor -> book : «construct from user input»
+
+' construct DAO
+create dao
+editor -> dao : «construct»
+
+' save book
+editor -> dao++ : save(book)
+dao--
+editor--
+
+destroy editor
+
+@enduml

@@ -1,0 +1,18 @@
+@startsalt ViewCartMockUp
+
+{^ Shopping Cart
+  <U+0020>{
+   Item | Quantity \t| Price  
+   \t
+   Aerosmith: Honkin on Bobo | \t1 | $23.99 | {[Change Quantity]} {[Remove]}
+   TurtleBeach Headphones (Red) | \t2 | $86.98 | {[Change Quantity]} {[Remove]}
+   Vintage Record Player VS427 | \t1 | $710.00  | {[Change Quantity]} {[Remove]}
+   \t
+   \t | Total (incl GST): | $820.97 
+   \t
+  }<U+0020>
+
+  <U+0020>{ [ Checkout ] | [  Return To Store  ] }
+
+}
+@endsalt

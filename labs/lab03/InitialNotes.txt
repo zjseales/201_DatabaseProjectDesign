@@ -1,0 +1,62 @@
+Possible stakeholders:
+
+Students, Internal – Students are within the organization and will have access to their own personal info. 
+Attendance, grades, timetables, maybe withstanding payments, achievements.
+
+Staff, Internal – Staff will be accessing the system very regularly. 
+Operational users that have access to all info, (based on the info I have so far). 
+
+The charities or benefactors that fund scholarships, 
+External Executives – Hold financial interest but have no interaction with the system.
+
+Outside users, External Operational – People wanting to enrol, 
+(seperate to students but still need access to certain operations) 
+
+REQUIREMENTS
+
+FUNCTIONAL: Outside users/customers enrol for 3 years bachelors on a specific instrument.
+	-Only one instrument may be chosen for enrolment.
+
+NON-FUNCTIONAL: Will need UI of instruments and class options.
+
+Enrolment only complete when audition is passed, and first year tuition paid.
+
+Payment is often electronic but any form is accepted.
+	-Payment forms required for students
+	-Domestic students have subsidised tuition. (Segregate the domestics)
+	-Scholarships are appointed to students who demonstrate particular merit.
+	-Mostly funded by benefactors and charities.
+
+Class scheduling and streaming.
+
+	- Must have completed enrolment,
+	- Classes follow the Royal schools Cirriculum.
+	 -Marks and grades for students recorded.
+	 -Written exam and performance exam.
+	 -Students attendance is logged. this is confidential info.
+	Access should only be available to the specific student, or school staff.
+
+Enrolled students should have access to their own info via a login.
+    -students can apply for an extra year for masters.
+    -Only 1 instrument per student with the ability to change.
+	-Record of achievements and certificates.
+	-timetables (teachers and locations, times)
+	-withstanding payments
+	-grades
+	-attendance record.
+	-Possible group announcements (nice to have)
+
+Encouraged to join symphony orchestra and/or chamber group, depending on current numbers and instrument.
+CURRENT: Record numbers and rearrange til a good balance is achieved.
+	-Should determine an algorithm to simplify this balancing method.
+
+Instrument hire is available.
+	-Student registers interest, if available then it is assigned with hire fee.
+	-students should have access to instruments available as well as their hire cost.
+	-Extra fee if broken or lost.
+	-Maintain a database of instruments.
+	-Each instrument has a unique code for ID.
+	-Sometimes re use older codes if an instrument is lost.
+	Should ensure codes are always unique
+
+Staff are paid monthly using a standard package, though are switching to fortnightly.

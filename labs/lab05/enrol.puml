@@ -1,0 +1,36 @@
+@startuml enrol
+
+skinparam guillemet false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam style strictuml
+
+skinparam activity {
+  hide empty description
+}
+
+start
+:Student\nApplies;
+:Application received\nby Management Staff;
+if(Positions Available) then ([yes])
+    repeat :Book Audition;
+    repeat while (Audition Postponed) is (\t[postponed]\n)
+    ->[not postponed];
+    :Audition;
+    if(Audition Passed) then ([yes])
+        :Congratulate Student\nand Send Invoice;
+        repeat
+        repeat while(Payment Complete?) is (\t[no]\n)
+else ([no])
+   :Cancel Application\nand inform Student;
+   stop
+   endif
+else ([no])
+   :Cancel Application\nand inform Student;
+   stop
+   endif
+   ->[Payment Made];
+   :Enrolment Complete;
+   stop
+
+@enduml

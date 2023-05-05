@@ -1,0 +1,35 @@
+@startuml enrol
+
+skinparam guillemet false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam style strictuml
+
+skinparam activity {
+  hide empty description
+}
+
+start
+:Test Assigned/Booked;
+if (Student sat test?) then ([yes])
+:Grade Test;
+    if (Result Descrepancy?) then ([no])
+    :Finalize Mark/Grade;
+    else ([yes])
+    :Send to\nManagement\nStaff for follow up;
+    if (Discrepancy Okay?) then ([yes])
+    :Finalize Mark/Grade;
+    else ([no])
+    :Grade N/A\n(or resit);
+    stop
+endif
+endif
+repeat
+repeat while (Is Release Date?) is (\t[no]\n)
+->[yes];
+:Send Out Results;
+stop
+else ([no])
+:Grade N/A\n(or resit);
+stop
+@enduml

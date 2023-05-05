@@ -1,0 +1,64 @@
+@startuml AddProduct
+
+title : "Add a New Product\n(Sequence-Diagram)"
+
+' style tweaks to make the diagram a little more readable
+skinparam {
+	Style strictuml
+	RoundCorner 5
+	BoxPadding 35
+	ParticipantPadding 15
+    Padding 2
+
+	Sequence {
+		' make activations yellow too
+		LifeLineBackgroundColor #FDFDCD
+
+		' make stereotypes more presentable
+		Stereotype {
+			Font {
+				Size 11
+				Style plain
+			}
+		}
+	}
+
+	Database {
+		' make database border consistent with the rest of the diagram
+		BorderColor #A80036
+	}
+
+}
+
+actor "User" as user
+participant "MainMenu" as menu <<gui>>
+participant "ProductEditor" as editor <<gui>>
+participant "product : Product" as product <<domain>>
+participant "ProductCollectionsDAO" as dao <<DAO>>
+
+'user clicks 'add new product' button
+user -> menu++: click 'Add a New Product'
+create editor
+menu -> editor : «construct»
+
+' user enters product details and clicks the 'save' button
+user -> editor : enter Product details
+user -> editor++ : click save button
+
+' construct product object
+create product
+editor -> product : «construct from user input»
+
+' construct DAO
+create dao
+editor -> dao : «construct»
+
+' save product in the data store
+editor -> dao++ : save(product)
+editor -> menu : return to main menu
+dao--
+editor--
+
+destroy editor
+
+@enduml

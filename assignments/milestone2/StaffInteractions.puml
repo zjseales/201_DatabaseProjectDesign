@@ -1,0 +1,26 @@
+@startuml Staff_Interactions
+
+title : HV Lo-Fi Staff Usecase Diagram
+
+'actors
+:In-Store\n  Staff: as staff
+
+'usecases
+(Receive\nOrders) as receive
+(Send orders) as send
+(Weekly Update) as update
+(Provide Music\nRecommendations) as music
+(Update New Stock) as stock
+(Other possible\nadvertisements) as ads
+(Gift-Wrap) as gift
+
+'Diagram Layout
+staff--receive
+staff-up-send
+send.>receive : <<require>>\n\n
+staff-update
+update<-up.music : <<extend>>
+update<.stock : <<extend>>
+update<.down-ads : <<extend>>
+gift-down.>send : <<extend>>
+@enduml

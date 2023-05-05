@@ -1,0 +1,26 @@
+@startuml hire
+
+skinparam guillemet false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam style strictuml
+
+skinparam activity {
+  hide empty description
+}
+
+start
+repeat :Student chooses\ninstrument;
+repeat while (Is instrument available?) is (\t[no]\n)
+->[yes];
+:Make Payment;
+if (Payment Accepted) then ([yes])
+:Record student ID\nand instrument ID;
+:Instrument given to student;
+:Instrument no\nlonger available\nfor hire;
+stop;
+else ([no])
+:Cancel Hire;
+stop
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml Customer_Interaction_HVLoFi
+
+title : "HV Lo-Fi" Draft Overview of the Online System
+
+'actors
+:Registered\n Customer: as customer
+:Unregistered\n  Customer: as unregCustomer
+: Postal\nService: as delivery
+:In-Store\n  Staff: as staff
+:Payment\nSoftware: as paySoft <<Application>>
+:  Stock\nSupplier: as stock
+
+'usecases
+(Register\nAccount) as register
+(Log-in) as login
+(Browse\nProducts) as browse
+(Filter\nProducts) as filter
+(Search\nProducts) as search
+(Enter\nKeyword/s) as text
+(Add Item/s\nTo Cart) as add
+(Modify Cart\nContents) as mod
+(Purchase\nItems) as checkout
+(Make\nPayment) as pay
+(Verify\nPayment) as verify
+(Choose Gift-Wrap) as gift
+(Choose Delivery\nAddress) as decideDeliver
+(Update Weekly\nRecommendations) as recommend
+(Deliver Item/s) as ship
+(Finalize\nTransaction) as final
+(Gift-Wrap Item/s) as wrap
+
+'Diagram Layout
+unregCustomer-right-register
+unregCustomer-up-browse
+browse<..filter : <<extends>>
+unregCustomer--search
+unregCustomer-up-add
+search<.up.filter : <<extends>>
+text<.up.search : <<includes>>
+customer-browse
+customer-search
+customer--login
+customer-up-add
+add<-right.mod : <<extends>>
+checkout-customer
+checkout-up.>add : <<requires>>
+checkout.>login : <<requires>>
+checkout-up.>pay : <<includes>>
+pay<.up-verify : <<includes>>
+customer-left-pay
+paySoft-down-verify
+gift.>checkout : <<extends>>
+decideDeliver<.up.checkout : <<includes>>
+staff-left-recommend
+staff-right-final
+final<.down.wrap : <<extends>>
+final.>verify : <<requires>>
+wrap-.>gift : <<includes>>
+final.>decideDeliver : <<requires>>
+staff-up-ship
+ship-left-delivery
+ship.>final : <<requires>>
+stock-down-final
+ship-stock
+
+@enduml

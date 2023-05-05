@@ -1,0 +1,26 @@
+@startuml InstrumentHire
+
+
+' INFO 201 Normalisation Lab
+' Here we abuse the PlantUML Use Case diagram type somewhat to produce a functional dependency diagram.
+
+' NOTE: we adopt SQL-style <table>.<column> naming style to ensure globally unique attribute names.
+
+rectangle InstrumentHire <<domain>> {
+
+	usecase "InstrumentID" as InstrumentHire.InstrumentID
+	
+	together {
+		usecase InstrumentType
+		usecase Instrument
+		usecase Size
+		usecase IDnumber
+	}
+	
+	Instrument --> InstrumentType
+	InstrumentHire.InstrumentID --> Instrument
+	InstrumentHire.InstrumentID --> Size
+	Instrument --> IDnumber
+}
+
+@enduml

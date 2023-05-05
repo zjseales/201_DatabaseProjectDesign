@@ -1,0 +1,71 @@
+@startuml EnrolModel
+
+' ======= Style / Layout Tweaks =======
+
+hide empty members
+
+skinparam {
+  Style StrictUML
+
+  ' use characters instead of icons for showing visibility
+  ClassAttributeIconSize 0
+
+  ' make the stereotypes less ugly
+  ClassStereotypeFont {
+    Size 10
+    Style plain
+  }
+
+  ' make boxes slightly less pointy
+  RoundCorner 5
+
+  ' make everything slightly less cramped
+  Padding 2
+
+  ' vertical spacing (make room for labels)
+  RankSep 100
+
+  ' horizontal spacing (make room for labels)
+  NodeSep 120
+}
+
+' ======= Classes =======
+
+class "EnrolmentMenu" as menu <<form>> {
+ - enrolStudent : JButton
+ - enrolStudentDeg : JButton
+ - enrolStudentClass : JButton
+}
+class "EnrolStudentDegreeForm" as enrolDeg <<form>> {
+  - studentID : JTextField
+  - degName : JComboBox
+  - enrolStatus : JComboBox
+  - findStudent : JButton
+  - save : JButton
+  - cancel : JButton
+--
+  + displayForm() : void
+}
+
+class "DataStorage" <<EnrolmentDataStore>> {
+  'methods
+  + findStudent(studentID : String)
+  + getDegreeNames() : Collection<String>
+  + getDegreeEnrolmentStatuses() : Collection<String>
+  + enrolStudentInDegree(student : Student, 
+  degreeEnrolment : DegreeEnrolment) : void
+  + saveEnrolment(enrolment : Enrolment) : void
+  + cancelEnrolment() : void
+}
+
+class "Student" as student <<domain>>
+class "Degree" as degr <<domain>>
+
+' ======= Relationships =======
+
+menu -right-> "-enrolDegreeForm \r1 " enrolDeg
+enrolDeg -down-> "-dataStore \r1 " DataStorage
+enrolDeg -down-> "-student \r1 " student
+enrolDeg -down-> "-degree \t\r1\t" degr
+
+@enduml

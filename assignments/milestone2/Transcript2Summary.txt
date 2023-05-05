@@ -1,0 +1,30 @@
+Search Filtering should include;
+- Artists
+- Song Titles
+- Album/EP Titles
+- Soundtracks
+- Date of release
+- Genres
+- Producers/Mastering Engineers
+
+Current Staff picks need to be stored.
+
+New releases / Current Trends should be stored.
+
+Checkout;
+Shopping cart should allow change/removal of items.
+Need customer delivery address and option to change address.
+GST is dependent on delivery address. (if from NZ GST = 15%)
+Need payment details.
+Provide option to gift wrap.
+
+(Registration is Restricted 18+)
+
+CUSTOMER ENTITY
+- firstName
+- lastName
+- email
+- CountryOfResidence
+- phoneNumber (optional)
+- D.O.B (optional)
+- MusicPreferences (optional)
